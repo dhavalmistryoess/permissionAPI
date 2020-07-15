@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Project/Permission/API/application/config/database.php</file>
+            <file>file:/D:/Project/Permission/API/index.php</file>
+            <file>file:/D:/Project/Permission/API/application/modules/Common/controllers/Common.php</file>
+            <file>file:/D:/Project/Permission/API/application/third_party/MX/Controller.php</file>
+            <file>file:/D:/Project/Permission/API/system/libraries/Lib_log.php</file>
+            <file>file:/D:/Project/Permission/API/application/modules/Common/controllers/Auth.php</file>
+            <file>file:/D:/Project/Permission/API/application/modules/Common/models/Common_model.php</file>
+            <file>file:/D:/Project/Permission/API/application/config/config.php</file>
+            <file>file:/D:/Project/Permission/API/application/config/constants.php</file>
+            <file>file:/D:/Project/Permission/API/application/modules/Assessment/controllers/SyncDetails.php</file>
+            <file>file:/D:/Project/Permission/API/application/modules/Assessment/models/SyncDetails_model.php</file>
+        </group>
+    </open-files>
+</project-private>

@@ -1,0 +1,6239 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+    "version": "",
+    "title": "Assessment"
+  },
+  "host": "localhost",
+  "basePath": "/OESS_Assessment_API",
+  "tags": [
+    {
+      "name": "Common",
+      "description": "All the api for Common pages"
+    },
+    {
+      "name": "Assessment",
+      "description": "All the api for Assessment pages"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/Common/Auth/login": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Login for the system",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Login Credentails",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "EmailAddress",
+                "Password"
+              ],
+              "properties": {
+                "EmailAddress": {
+                  "type": "string"
+                },
+                "Password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful login"
+          },
+          "404": {
+            "description": "Invalid Login"
+          }
+        }
+      }
+    },
+    "/Common/Auth/logout": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Logout for the system",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Logout Credentails",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserId"
+              ],
+              "properties": {
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful logout"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Password/forgot": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Forgot password",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Credentail Details",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "EmailAddress",
+                "ResetPasswordURL"
+              ],
+              "properties": {
+                "EmailAddress": {
+                  "type": "string"
+                },
+                "ResetPasswordURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful forgot"
+          },
+          "400": {
+            "description": "This email address not found"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Password/checkResetLink": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Check this reset link is valid or not",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Credentail Details",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserId",
+                "ForgotPasswordCode"
+              ],
+              "properties": {
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ForgotPasswordCode": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Password/reset": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Reset the password",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Credentail Details",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserId",
+                "Password",
+                "LoginURL",
+                "ForgotPasswordURL"
+              ],
+              "properties": {
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "Password": {
+                  "type": "string"
+                },
+                "LoginURL": {
+                  "type": "string"
+                },
+                "ForgotPasswordURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful reset"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Password/change": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Change the password",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Credentail Details",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserId",
+                "Password",
+                "OldPassword"
+              ],
+              "properties": {
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "Password": {
+                  "type": "string"
+                },
+                "OldPassword": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful change"
+          },
+          "400": {
+            "description": "Incorrect old password"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/isActiveChange": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "IsActive changes for all",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "Id",
+                "IsActive",
+                "UpdatedBy",
+                "TableName",
+                "FieldName",
+                "Module",
+                "ModuleId"
+              ],
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UpdatedBy": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "TableName": {
+                  "type": "string"
+                },
+                "FieldName": {
+                  "type": "string"
+                },
+                "Module": {
+                  "type": "string"
+                },
+                "ModuleId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful changes"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/delete": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Delete function for all",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "Id",
+                "UserId",
+                "TableName",
+                "FieldName",
+                "Module",
+                "ModuleId"
+              ],
+              "properties": {
+                "Id": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "TableName": {
+                  "type": "string"
+                },
+                "FieldName": {
+                  "type": "string"
+                },
+                "Module": {
+                  "type": "string"
+                },
+                "ModuleId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Delete successfully"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/getAllRoles": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get All Inquiries",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/Common/Country/addUpdate": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Add/Update for country",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "CountryId",
+                "CountryName",
+                "CountryAbbreviation",
+                "PhonePrefix",
+                "IsActive",
+                "UserId"
+              ],
+              "properties": {
+                "CountryId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CountryName": {
+                  "type": "string"
+                },
+                "CountryAbbreviation": {
+                  "type": "string"
+                },
+                "PhonePrefix": {
+                  "type": "string"
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Country Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Country/getById/{CountryId}": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get Country by CountryId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CountryId",
+            "in": "path",
+            "description": "CountryId of Country that needs to be get data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Country/getAll/{IsActive}": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get all Country",
+        "description": "if you want only active data then pass IsActive as 1 otherwise pass 2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsActive",
+            "in": "path",
+            "description": "IsActive of Country that needs to be get active/all data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/State/addUpdate": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Add/Update for state",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "StateId",
+                "CountryId",
+                "StateName",
+                "StateAbbreviation",
+                "IsActive",
+                "UserId"
+              ],
+              "properties": {
+                "StateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CountryId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "StateName": {
+                  "type": "string"
+                },
+                "StateAbbreviation": {
+                  "type": "string"
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate State Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/State/getById/{StateId}": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get State by StateId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "StateId",
+            "in": "path",
+            "description": "StateId of State that needs to be get data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/State/getAll/{IsActive}": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get all State",
+        "description": "if you want only active data then pass IsActive as 1 otherwise pass 2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsActive",
+            "in": "path",
+            "description": "IsActive of State that needs to be get active/all data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Category/addUpdate": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add/Update for category",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "CategoryId",
+                "ParentId",
+                "CategoryName",
+                "Description",
+                "IsActive",
+                "UserId"
+              ],
+              "properties": {
+                "CategoryId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ParentId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CategoryName": {
+                  "type": "string"
+                },
+                "Description": {
+                  "type": "string"
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Category Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Category/getById/{CategoryId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get Category by CategoryId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CategoryId",
+            "in": "path",
+            "description": "CategoryId of Category that needs to be get data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Category/getAll/{IsActive}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Categories",
+        "description": "if you want only active data then pass IsActive as 1 otherwise pass 2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsActive",
+            "in": "path",
+            "description": "IsActive of Category that needs to be get active/all data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Document/addUpdate": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add/Update for Document",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "DocumentId",
+                "DocumentName",
+                "DocumentType",
+                "DocumentSize",
+                "DocumentSizeUnit",
+                "PrimaryDocument",
+                "IsActive",
+                "UserId"
+              ],
+              "properties": {
+                "DocumentId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "DocumentName": {
+                  "type": "string"
+                },
+                "DocumentType": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "DocumentSize": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "DocumentSizeUnit": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "PrimaryDocument": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Document/getById/{DocumentId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get Document by DocumentId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "DocumentId",
+            "in": "path",
+            "description": "DocumentId of Document that needs to be get data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Document/getAll/{IsActive}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Documents",
+        "description": "if you want only active data then pass IsActive as 1 otherwise pass 2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsActive",
+            "in": "path",
+            "description": "IsActive of Document that needs to be get active/all data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Document/getAllDefault": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Document types",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/DiscountCoupon/addUpdate": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add/Update for DiscountCoupon",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "DiscountCouponId",
+                "DiscountTypeId",
+                "CurrencyTypeId",
+                "CouponCode",
+                "Value",
+                "ValidFrom",
+                "ValidTo",
+                "IsActive",
+                "UserId"
+              ],
+              "properties": {
+                "DiscountCouponId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "DiscountTypeId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CurrencyTypeId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CouponCode": {
+                  "type": "string"
+                },
+                "Value": {
+                  "type": "number",
+                  "format": "decimal"
+                },
+                "ValidFrom": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "ValidTo": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Discount Coupon Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/DiscountCoupon/getById/{DiscountCouponId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get DiscountCoupon by DiscountCouponId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "DiscountCouponId",
+            "in": "path",
+            "description": "DiscountCouponId of Discount Coupon that needs to be get data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/DiscountCoupon/getAll/{IsActive}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Discount Coupons",
+        "description": "if you want only active data then pass IsActive as 1 otherwise pass 2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsActive",
+            "in": "path",
+            "description": "IsActive of Discount Coupons that needs to be get active/all data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/DiscountCoupon/getAllDefault": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all default data for add or update discount coupon",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EligibilityItem/addUpdate": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add/Update for EligibilityItem",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "EligibilityItemId",
+                "CertificateId",
+                "EligibilityItemText",
+                "EligibilityItemFor",
+                "AnswerForEligibility",
+                "IsActive",
+                "UserId"
+              ],
+              "properties": {
+                "EligibilityItemId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "EligibilityItemText": {
+                  "type": "string"
+                },
+                "EligibilityItemFor": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "AnswerForEligibility": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate EligibilityItem Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EligibilityItem/getById/{EligibilityItemId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get EligibilityItem by EligibilityItemId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "EligibilityItemId",
+            "in": "path",
+            "description": "EligibilityItemId of Eligibility Item that needs to be get data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EligibilityItem/getAll/{IsActive}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Eligibility Item",
+        "description": "if you want only active data then pass IsActive as 1 otherwise pass 2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsActive",
+            "in": "path",
+            "description": "IsActive of Eligibility Item that needs to be get active/all data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EligibilityItem/getAllDefault": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all default data for add or update eligibility item",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Certificate/addUpdate": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add/Update for Certificate",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "CertificateId",
+                "CertificateName",
+                "VersionName",
+                "ReleaseDate",
+                "Description",
+                "WhoCanApply",
+                "Features",
+                "USDPrice",
+                "INRPrice",
+                "EURPrice",
+                "CertificationDuration",
+                "AssessmentDuration",
+                "BeforeRenewButtonDisplay",
+                "AfterRenewButtonDisplay",
+                "CoolingPeriod",
+                "HasSubCertificate",
+                "IsRenewable",
+                "PracticeExamAttempts",
+                "ScheduleAfterDaysForProctor",
+                "ScheduleAfterDaysForCandidate",
+                "HasProctor",
+                "HasDisplayCandidateInfo",
+                "HasDisplayProctorInfo",
+                "EligibilityCriteria",
+                "RescheduleAssessment",
+                "IsActive",
+                "UserId",
+                "CertificateDocumentsForCandidate",
+                "CertificateDocumentsForProctor"
+              ],
+              "properties": {
+                "CertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateName": {
+                  "type": "string"
+                },
+                "VersionName": {
+                  "type": "string"
+                },
+                "ReleaseDate": {
+                  "type": "string"
+                },
+                "Description": {
+                  "type": "string"
+                },
+                "WhoCanApply": {
+                  "type": "string"
+                },
+                "Features": {
+                  "type": "string"
+                },
+                "USDPrice": {
+                  "type": "number",
+                  "format": "decimal"
+                },
+                "INRPrice": {
+                  "type": "number",
+                  "format": "decimal"
+                },
+                "EURPrice": {
+                  "type": "number",
+                  "format": "decimal"
+                },
+                "CertificationDuration": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "AssessmentDuration": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "BeforeRenewButtonDisplay": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "AfterRenewButtonDisplay": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CoolingPeriod": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "HasSubCertificate": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "IsRenewable": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "PracticeExamAttempts": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ScheduleAfterDaysForProctor": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ScheduleAfterDaysForCandidate": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "HasProctor": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "HasDisplayCandidateInfo": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "HasDisplayProctorInfo": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "EligibilityCriteria": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "RescheduleAssessment": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateDocumentsForCandidate": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "CertificateDocumentId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "DocumentId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "IsMandatory": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  }
+                },
+                "CertificateDocumentsForProctor": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "CertificateDocumentId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "DocumentId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "IsMandatory": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Certificate Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Certificate/getById/{CertificateId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get Certificate by CertificateId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CertificateId",
+            "in": "path",
+            "description": "CertificateId of Certificate that needs to be get data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Certificate/getAll/{IsActive}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Certificates",
+        "description": "if you want only active data then pass IsActive as 1 otherwise pass 2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsActive",
+            "in": "path",
+            "description": "IsActive of Certificates that needs to be get active/all data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Certificate/getAllDefault": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all default data for add or update certificate",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Certificate/updateDocument/{CertificateDocumentId}/": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Update document by CertificateDocumentId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CertificateDocumentId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/CertificateCategoryMapping/addUpdate": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add/Update for Certificate-Category mapping",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "CertificateId",
+                "CategoryId",
+                "MappingDetails",
+                "UserId"
+              ],
+              "properties": {
+                "CertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CategoryId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "MappingDetails": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "AssessmentDetails": {
+                        "type": "object",
+                        "properties": {
+                          "CertificateAssessmentMappingId": {
+                            "type": "integer",
+                            "format": "int64"
+                          },
+                          "AssessmentTotalItems": {
+                            "type": "integer"
+                          },
+                          "CategoryAssessmentTime": {
+                            "type": "integer"
+                          },
+                          "NoneScoreItems": {
+                            "type": "integer"
+                          },
+                          "PassingPercentage": {
+                            "type": "integer"
+                          },
+                          "IsMandatoryCategoryAssessment": {
+                            "type": "integer",
+                            "format": "int64"
+                          },
+                          "IsActive": {
+                            "type": "integer",
+                            "format": "int64"
+                          }
+                        }
+                      },
+                      "PracticeTestDetails": {
+                        "type": "object",
+                        "properties": {
+                          "CertificatePracticeTestMappingId": {
+                            "type": "integer",
+                            "format": "int64"
+                          },
+                          "PracticeTotalItems": {
+                            "type": "integer"
+                          },
+                          "PracticeCategoryAssessmentTime": {
+                            "type": "integer"
+                          },
+                          "PracticeNoneScoreItems": {
+                            "type": "integer"
+                          },
+                          "PracticePassingPercentage": {
+                            "type": "integer"
+                          },
+                          "PracticeIsMandatoryCategoryAssessment": {
+                            "type": "integer",
+                            "format": "int64"
+                          },
+                          "PracticeIsActive": {
+                            "type": "integer",
+                            "format": "int64"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Discount Coupon Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/CertificateCategoryMapping/getById/{CertificateId}/{CategoryId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get Certificate Category Mapping by CertificateId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CertificateId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "CategoryId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/CertificateCategoryMapping/getByCertificateId/{CertificateId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get Certificate Category Mapping by CertificateId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CertificateId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/CertificateCategoryMapping/getAllDefault": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all default data for add or update Certificate Category Mapping",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/CertificateCategoryMapping/getAll": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all data of Certificate Category Mapping",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Item/addUpdate": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add/Update for Item",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "ItemId",
+                "CategoryId",
+                "ItemText",
+                "IsNoScoreItem",
+                "CorrectItemOptionId",
+                "IsActive",
+                "UserId"
+              ],
+              "properties": {
+                "ItemId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CategoryId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ItemText": {
+                  "type": "string"
+                },
+                "IsNoScoreItem": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ItemOptions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "OptionValue": {
+                        "type": "string"
+                      },
+                      "IsCorrectOption": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "IsActive": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  }
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Item/getById/{ItemId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get Item by ItemId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ItemId",
+            "in": "path",
+            "description": "ItemId of Item that needs to be get data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Item/getAll/{IsActive}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Items",
+        "description": "if you want only active data then pass IsActive as 1 otherwise pass 2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsActive",
+            "in": "path",
+            "description": "IsActive of Item that needs to be get active/all data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/Item/getAllDefault": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Default data to add/update the item",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EligibilityAnswer/getById/{CertificateId}/{EligibilityItemFor}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get eligibility items by CertificateId and EligibilityItemFor",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CertificateId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "EligibilityItemFor",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EligibilityAnswer/getAllDefault": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Default data to add/update the item",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EligibilityAnswer/addEligibilityAnswer": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add/Update for Item",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "EligibilityAnswers",
+                "IsActive",
+                "UserId"
+              ],
+              "properties": {
+                "CandidateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "EligibilityAnswers": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "EligibilityItemId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "AnswerForEligibility": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "UserEligibilityAnswer": {
+                        "type": "integer",
+                        "format": "int64"
+                      }
+                    }
+                  }
+                },
+                "EligibilityCriteria": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/UserInvite/getAllDefault": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Default data to send the invitation",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/UserInvite/SendInvitation": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Send invitation to proctor and candidate",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "FirstName",
+                "LastName",
+                "EmailAddress",
+                "RoleId",
+                "RegistrationURL",
+                "CertificateDetails"
+              ],
+              "properties": {
+                "FirstName": {
+                  "type": "string"
+                },
+                "LastName": {
+                  "type": "string"
+                },
+                "EmailAddress": {
+                  "type": "string"
+                },
+                "RoleId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "RegistrationURL": {
+                  "type": "string"
+                },
+                "CertificateDetails": {
+                  "type": "object",
+                  "properties": {
+                    "CertificateId": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "CertificateName": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/UserRegistration/CheckEmail": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Check Email",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "EmailAddress"
+              ],
+              "properties": {
+                "EmailAddress": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "EmailAddress already exists/EmailAddress does not exists"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/UserRegistration/getAllDefault": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Default data to register",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/UserRegistration/getById/{CertificateId}/{CertificateFor}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get Certificate Documents by CertificateId and CertificateFor",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CertificateId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "CertificateFor",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/UserRegistration/getUserCertificates/{UserId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get user certificates with documents by UserId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/UserRegistration/Registration": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "User Registration",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "RoleId",
+                "CertificateId",
+                "FirstName",
+                "MiddleName",
+                "LastName",
+                "EmailAddress",
+                "PhoneNumber",
+                "Password",
+                "RegistrationType",
+                "UserDocuments",
+                "LoginURL"
+              ],
+              "properties": {
+                "RoleId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "FirstName": {
+                  "type": "string"
+                },
+                "MiddleName": {
+                  "type": "string"
+                },
+                "LastName": {
+                  "type": "string"
+                },
+                "EmailAddress": {
+                  "type": "string"
+                },
+                "PhoneNumber": {
+                  "type": "string"
+                },
+                "Password": {
+                  "type": "string"
+                },
+                "RegistrationType": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserDocuments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "CertificateDocumentId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "CertificateDocumentName": {
+                        "type": "string"
+                      },
+                      "DocumentUrl": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "LoginURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/UserRegistration/VerifyDocuments": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "User Registration",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserId",
+                "UpdatedBy",
+                "UserCertificateId",
+                "UserName",
+                "CertificateName",
+                "DocumentVerificationStatus",
+                "DocumentVerificationComment",
+                "LoginURL"
+              ],
+              "properties": {
+                "RoleId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "FirstName": {
+                  "type": "string"
+                },
+                "MiddleName": {
+                  "type": "string"
+                },
+                "LastName": {
+                  "type": "string"
+                },
+                "EmailAddress": {
+                  "type": "string"
+                },
+                "PhoneNumber": {
+                  "type": "string"
+                },
+                "Password": {
+                  "type": "string"
+                },
+                "RegistrationType": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserDocuments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "CertificateDocumentId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "CertificateDocumentName": {
+                        "type": "string"
+                      },
+                      "DocumentUrl": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "LoginURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/UserRegistration/VerifyDocument/{UserDocumentCertificateMappingId}/{IsVerify}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Verify each document by UserDocumentCertificateMappingId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserDocumentCertificateMappingId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "IsVerify",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/UserRegistration/uploadDocuments/{UserId}/{TotalCount}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Upload User Documets",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "TotalCount",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/UserRegistration/getAll/{IsActive}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Users",
+        "description": "if you want only active data then pass IsActive as 1 otherwise pass 2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsActive",
+            "in": "path",
+            "description": "IsActive of User that needs to be get active/all data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/UpdatePersonalDetails": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Update Personal Details",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserId",
+                "FirstName",
+                "MiddleName",
+                "LastName",
+                "PhoneNumber"
+              ],
+              "properties": {
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "FirstName": {
+                  "type": "string"
+                },
+                "MiddleName": {
+                  "type": "string"
+                },
+                "LastName": {
+                  "type": "string"
+                },
+                "PhoneNumber": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/UpdateAddressDetails": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Update Address Details",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserId",
+                "AddressId",
+                "Address1",
+                "Address2",
+                "Address3",
+                "City",
+                "StateId",
+                "CountryId",
+                "ZipCode"
+              ],
+              "properties": {
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "AddressId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "Address1": {
+                  "type": "string"
+                },
+                "Address2": {
+                  "type": "string"
+                },
+                "Address3": {
+                  "type": "string"
+                },
+                "City": {
+                  "type": "string"
+                },
+                "StateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CountryId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ZipCode": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/getData": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get Certificate Documents by CertificateId and All User Documents by UserId",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserId",
+                "CertificateId",
+                "CertificateFor"
+              ],
+              "properties": {
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateFor": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/searchOrderHistory": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Search Order History",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "OrderId",
+                "OrderDateFrom",
+                "OrderDateTo",
+                "PaymentStatus",
+                "UserId"
+              ],
+              "properties": {
+                "OrderId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "OrderDateFrom": {
+                  "type": "string"
+                },
+                "OrderDateTo": {
+                  "type": "string"
+                },
+                "PaymentStatus": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/UpdatePersonalDocuments": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Upload Documents",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserDocuments"
+              ],
+              "properties": {
+                "UserDocuments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "UserName": {
+                        "type": "string"
+                      },
+                      "CertificateName": {
+                        "type": "string"
+                      },
+                      "UserDocumentId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "documentCount": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "DocumentId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "CertificateDocumentName": {
+                        "type": "string"
+                      },
+                      "DocumentUrl": {
+                        "type": "string"
+                      },
+                      "UserId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "LoginURL": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/UpdateCertificateDocuments": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Upload Documents",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserDocuments"
+              ],
+              "properties": {
+                "UserDocuments": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "UserName": {
+                        "type": "string"
+                      },
+                      "CertificateName": {
+                        "type": "string"
+                      },
+                      "UserDocumentCertificateMappingId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "UserDocumentId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "UserCertificateId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "CertificateDocumentId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "documentCount": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "DocumentId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "CertificateDocumentName": {
+                        "type": "string"
+                      },
+                      "DocumentUrl": {
+                        "type": "string"
+                      },
+                      "UserId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "LoginURL": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/getAllDefault/{UserId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Default data to Edit Profile",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/getOrderReceipt/{OrderId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get order receipt by OrderId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "OrderId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/getOrderInvoice/{OrderId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get order invoice by OrderId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "OrderId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/uploadDocuments/{UserId}/{TotalCount}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Upload Documents",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "TotalCount",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/getStateByCountryId/{CountryId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get states by CountryId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CountryId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/deletePersonalDocument/{UserDocumentId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Delete Document",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserDocumentId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/EditProfile/deleteDocument/{UserDocumentId}/{UserDocumentCertificateMappingId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Delete Document",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserDocumentId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "UserDocumentCertificateMappingId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/CandidateDashboard/getById/{UserId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get user details by UserId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/CandidateDashboard/getCertificateDetailsById/{UserCertificateId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get certificate details by UserCertificateId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserCertificateId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/CandidateDashboard/ScheduleAssessment": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Schedule Assessment",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "CertificateId",
+                "UserId",
+                "UserCertificateId",
+                "AvailablePriorityDate1",
+                "AvailablePriorityDate2",
+                "AvailablePriorityDate3",
+                "CertificateName",
+                "FirstName",
+                "LastName",
+                "IsDocumentVerificationRequired",
+                "LoginURL"
+              ],
+              "properties": {
+                "CertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserCertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "AvailablePriorityDate1": {
+                  "type": "string"
+                },
+                "AvailablePriorityDate2": {
+                  "type": "string"
+                },
+                "AvailablePriorityDate3": {
+                  "type": "string"
+                },
+                "CertificateName": {
+                  "type": "string"
+                },
+                "FirstName": {
+                  "type": "string"
+                },
+                "LastName": {
+                  "type": "string"
+                },
+                "IsDocumentVerificationRequired": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "LoginURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/CandidateDashboard/CancelAssessment": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Cancel Assessment",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "ScheduleAssessmentId",
+                "UserId",
+                "CertificateName",
+                "FirstName",
+                "LastName",
+                "CancelComment",
+                "AssignDate",
+                "StartTime",
+                "EndTime",
+                "LoginURL"
+              ],
+              "properties": {
+                "ScheduleAssessmentId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateName": {
+                  "type": "string"
+                },
+                "FirstName": {
+                  "type": "string"
+                },
+                "LastName": {
+                  "type": "string"
+                },
+                "CancelComment": {
+                  "type": "string"
+                },
+                "AssignDate": {
+                  "type": "string"
+                },
+                "StartTime": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "EndTime": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "LoginURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssignAssessment/getAllDefault": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all Default data to assign assessment",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssignAssessment/getScheduleAssessmentDetailById/{ScheduleAssessmentHistoryId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get Schedule Assessment by ScheduleAssessmentHistoryId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ScheduleAssessmentHistoryId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssignAssessment/getProctorDetails/{UserId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get proctor detail by UserId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssignAssessment/getStateByCountryId/{CountryId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get states by CountryId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CountryId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssignAssessment/SuggestedProctors": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Filter of suggested proctors",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "City",
+                "AssignDate",
+                "TimeRange"
+              ],
+              "properties": {
+                "City": {
+                  "type": "string"
+                },
+                "AssignDate": {
+                  "type": "string"
+                },
+                "TimeRange": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate EligibilityItem Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssignAssessment/AssignAssessment": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Assign Assessment",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "ScheduleAssessmentHistoryId",
+                "UserCertificateId",
+                "ProctorId",
+                "CandidateId",
+                "AssignDate",
+                "StartTime",
+                "EndTime",
+                "AdminComment",
+                "AssignStatus",
+                "AddressId",
+                "AddressName",
+                "Address1",
+                "Address2",
+                "City",
+                "StateId",
+                "CountryId",
+                "ZipCode",
+                "UserId",
+                "CertificateName",
+                "FullAddress",
+                "LoginURL"
+              ],
+              "properties": {
+                "ScheduleAssessmentHistoryId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserCertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ProctorId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CandidateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "AssignDate": {
+                  "type": "string"
+                },
+                "StartTime": {
+                  "type": "string"
+                },
+                "EndTime": {
+                  "type": "string"
+                },
+                "AdminComment": {
+                  "type": "string"
+                },
+                "AssignStatus": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "AddressId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "AddressName": {
+                  "type": "string"
+                },
+                "Address1": {
+                  "type": "string"
+                },
+                "Address2": {
+                  "type": "string"
+                },
+                "City": {
+                  "type": "string"
+                },
+                "StateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CountryId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ZipCode": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateName": {
+                  "type": "string"
+                },
+                "FullAddress": {
+                  "type": "string"
+                },
+                "LoginURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/PracticeTest/getByCertificateId/{CertificateId}/{UserPracticeTestId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get categories by CertificateId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CertificateId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "UserPracticeTestId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/PracticeTest/getById/{UserPracticeTestMappingId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get items by UserPracticeTestMappingId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserPracticeTestMappingId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/PracticeTest/addPracticeTest": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add PracticeTest",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserCertificateId",
+                "UserPracticeTestId",
+                "UserId",
+                "CertificateId",
+                "CategoryId",
+                "CertificatePracticeTestMappingId",
+                "PracticeTotalItems"
+              ],
+              "properties": {
+                "UserCertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserPracticeTestId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CategoryId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificatePracticeTestMappingId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "PracticeTotalItems": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/PracticeTest/AddPracticeAnswers": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add PracticeTest answers",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "PracticeTestAnswerId",
+                "UserItemOptionId",
+                "CorrectOptionId",
+                "MarkAsReview",
+                "UserId"
+              ],
+              "properties": {
+                "PracticeTestAnswerId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserItemOptionId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CorrectOptionId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "MarkAsReview": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/PracticeTest/AddFinalSubmit": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add PracticeTest answers",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserPracticeTestMappingId",
+                "UserPracticeTestId",
+                "UserId",
+                "UserCertificateId",
+                "CertificateId",
+                "TotalCategories"
+              ],
+              "properties": {
+                "UserPracticeTestMappingId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserPracticeTestId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserCertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "TotalCategories": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/PracticeTest/getResultById/{UserPracticeTestId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get result by UserPracticeTestId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserPracticeTestId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssessmentPanel/getByCertificateId/{CertificateId}/{UserAssessmentId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get categories by CertificateId and UserAssessmentId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "CertificateId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "UserAssessmentId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssessmentPanel/getById/{UserAssessmentMappingId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get items by UserAssessmentMappingId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserAssessmentMappingId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssessmentPanel/addAssessment": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add Assessment",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "ScheduleAssessmentId",
+                "UserCertificateId",
+                "UserAssessmentId",
+                "UserId",
+                "CertificateId",
+                "CategoryId",
+                "CertificateAssessmentMappingId",
+                "NoneScoreItems",
+                "AssessmentTotalItems"
+              ],
+              "properties": {
+                "ScheduleAssessmentId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserCertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserAssessmentId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CategoryId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateAssessmentMappingId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "NoneScoreItems": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "AssessmentTotalItems": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssessmentPanel/AddAssessmentAnswers": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add Assessment answers",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "AssessmentAnswerId",
+                "UserItemOptionId",
+                "CorrectOptionId",
+                "MarkAsReview",
+                "UserId"
+              ],
+              "properties": {
+                "AssessmentAnswerId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserItemOptionId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CorrectOptionId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "MarkAsReview": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssessmentPanel/AddFinalSubmit": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Add PracticeTest answers",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "UserAssessmentMappingId",
+                "UserAssessmentId",
+                "UserId",
+                "UserCertificateId",
+                "CertificateId",
+                "TotalCategories"
+              ],
+              "properties": {
+                "UserAssessmentMappingId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserAssessmentId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserCertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "TotalCategories": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssessmentPanel/getResultById/{UserAssessmentId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get result by UserAssessmentId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserAssessmentId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssessmentDetails/getAllAssessments": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all assessments",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssessmentDetails/getAllDefault": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all default data",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssessmentDetails/getAssessmentDetails/{UserAssessmentId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get assessment detail by UserAssessmentId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserAssessmentId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssessmentDetails/getProctorDetails/{UserId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get proctor detail by UserId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssessmentDetails/CancelAssessment": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Cancel Assessment",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "ScheduleAssessmentId",
+                "UserId",
+                "CertificateName",
+                "ProctorId",
+                "ProctorName",
+                "FirstName",
+                "LastName",
+                "CandidateName",
+                "CancelComment",
+                "AssignDate",
+                "StartTime",
+                "EndTime",
+                "LoginURL"
+              ],
+              "properties": {
+                "ScheduleAssessmentId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ProctorId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ProctorName": {
+                  "type": "string"
+                },
+                "CertificateName": {
+                  "type": "string"
+                },
+                "FirstName": {
+                  "type": "string"
+                },
+                "LastName": {
+                  "type": "string"
+                },
+                "CandidateName": {
+                  "type": "string"
+                },
+                "CancelComment": {
+                  "type": "string"
+                },
+                "AssignDate": {
+                  "type": "string"
+                },
+                "StartTime": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "EndTime": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "LoginURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/AssessmentDetails/ChangeProctor": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Change Proctor",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "ScheduleAssessmentId",
+                "UserId",
+                "CertificateName",
+                "FirstName",
+                "LastName",
+                "ProctorName",
+                "AssignDate",
+                "StartTime",
+                "EndTime",
+                "LoginURL"
+              ],
+              "properties": {
+                "ScheduleAssessmentId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CertificateName": {
+                  "type": "string"
+                },
+                "FirstName": {
+                  "type": "string"
+                },
+                "LastName": {
+                  "type": "string"
+                },
+                "ProctorName": {
+                  "type": "string"
+                },
+                "AssignDate": {
+                  "type": "string"
+                },
+                "StartTime": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "EndTime": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "LoginURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorDashboard/updateDocumentVerificationStatus": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "update Document Verification Status",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "DocumentVerificationStatus",
+                "DocumentVerificationComment",
+                "ProctorId",
+                "UserId",
+                "ScheduleAssessmentId",
+                "CandidateName",
+                "CertificateName",
+                "LoginURL"
+              ],
+              "properties": {
+                "DocumentVerificationStatus": {
+                  "type": "string"
+                },
+                "DocumentVerificationComment": {
+                  "type": "string"
+                },
+                "ProctorId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ScheduleAssessmentId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CandidateName": {
+                  "type": "string"
+                },
+                "CertificateName": {
+                  "type": "string"
+                },
+                "LoginURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorDashboard/stopAssessment": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Stop Assessment",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "StopAssessmentStatus",
+                "StopAssessmentComment",
+                "ProctorId",
+                "UserId",
+                "ScheduleAssessmentId",
+                "CandidateName",
+                "CertificateName",
+                "LoginURL"
+              ],
+              "properties": {
+                "StopAssessmentStatus": {
+                  "type": "string"
+                },
+                "StopAssessmentComment": {
+                  "type": "string"
+                },
+                "ProctorId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ScheduleAssessmentId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "CandidateName": {
+                  "type": "string"
+                },
+                "CertificateName": {
+                  "type": "string"
+                },
+                "LoginURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorDashboard/getById/{UserId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get proctor detail by UserId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorDashboard/getPendingCandidates/{UserId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get Pending Candidates by UserId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorDashboard/getFullAttendanceSheet/{UserId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get Full Attendance Sheet by UserId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorDashboard/getCalendarDetails/{UserId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get Calendar Details by UserId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorDashboard/finalFeedback": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "final Feedback",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "ProctorFeedbackComment",
+                "ProctorId",
+                "UserId",
+                "ScheduleAssessmentId"
+              ],
+              "properties": {
+                "ProctorFeedbackComment": {
+                  "type": "string"
+                },
+                "ProctorId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ScheduleAssessmentId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorDashboard/ChangePresentStatus": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Change Present Status",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "ProctorId",
+                "ScheduleAssessmentId",
+                "IsActive"
+              ],
+              "properties": {
+                "ProctorId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ScheduleAssessmentId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorDashboard/ResumeAssessment": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Resume Assessment",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "ProctorId",
+                "ScheduleAssessmentId"
+              ],
+              "properties": {
+                "ProctorId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ScheduleAssessmentId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorDashboard/getFilterDefaultData/{UserId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get default data for filter in attendance list page by UserId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorDashboard/filterAttendanceList": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Filter of Attendance List",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "ProctorId",
+                "UserId",
+                "Location",
+                "shiftFilters",
+                "AssignDate"
+              ],
+              "properties": {
+                "ProctorId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                },
+                "Location": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "shiftFilters": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                },
+                "AssignDate": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorList/getById/{UserId}": {
+      "get": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Get all default data by UserId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Assessment/ProctorList/FilterProctorList": {
+      "post": {
+        "tags": [
+          "Assessment"
+        ],
+        "summary": "Filter of Proctor List",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "ProctorId",
+                "UserId",
+                "EmailAddress",
+                "CertificateId",
+                "Location",
+                "dateFilter",
+                "AssignDateFrom",
+                "AssignDateTo"
+              ],
+              "properties": {
+                "ProctorId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                },
+                "EmailAddress": {
+                  "type": "string"
+                },
+                "CertificateId": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                },
+                "Location": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "dateFilter": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                },
+                "AssignDateFrom": {
+                  "type": "string"
+                },
+                "AssignDateTo": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Dublicate Document Abbreviation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/AuditLog/getActivityLogs": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get All Activity Logs",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/AuditLog/getEmailLogs": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get All Email Logs",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/AuditLog/getErrorLogs": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get All Error Logs",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/AuditLog/getRecentAuditLogs": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get 5 Recent Audit Logs",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Inquiry/getAll": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get All Inquiries",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Inquiry/getAllDefault": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get All contact details",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Inquiry/addUpdate": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Add/Update for Inquiry",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "InquireId",
+                "FirstName",
+                "LastName",
+                "EmailAddress",
+                "PhoneNumber",
+                "Message",
+                "IsActive",
+                "UserId",
+                "LoginURL"
+              ],
+              "properties": {
+                "InquireId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "FirstName": {
+                  "type": "string"
+                },
+                "LastName": {
+                  "type": "string"
+                },
+                "EmailAddress": {
+                  "type": "string"
+                },
+                "PhoneNumber": {
+                  "type": "string"
+                },
+                "Message": {
+                  "type": "string"
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "LoginURL": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Notification/getAll/{UserId}/{RoleId}": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get all notification by userid",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "RoleId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Notification/getRecent/{UserId}/{RoleId}": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get recent notification by userid",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "UserId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "RoleId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Notification/ClearDismiss": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Clear/Dismiss Notification",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Get ClearAll for Type=1, Clear for Type=2, Dismiss for Type=3",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "NotificationId",
+                "Type"
+              ],
+              "properties": {
+                "NotificationId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "Type": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Configuration/getAll": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get All Configuration data",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/Configuration/Update": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Update all Configuration",
+        "description": "Post a data same like get data result",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "Gender"
+              ],
+              "properties": {
+                "SMTPDetails": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "ConfigurationId": {
+                        "type": "integer"
+                      },
+                      "Value": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "DocumentType": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "ConfigurationId": {
+                        "type": "integer"
+                      },
+                      "DisplayText": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "DiscountType": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "ConfigurationId": {
+                        "type": "integer"
+                      },
+                      "DisplayText": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "CurrencyType": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "ConfigurationId": {
+                        "type": "integer"
+                      },
+                      "DisplayText": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/EmailTemplate/addUpdate": {
+      "post": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Add/Update for EmailTemplate",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "EmailTemplateId",
+                "ModuleId",
+                "TokenId",
+                "Subject",
+                "EmailBody",
+                "To",
+                "Cc",
+                "Bcc",
+                "BccEmail",
+                "IsActive",
+                "UserId"
+              ],
+              "properties": {
+                "EmailTemplateId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ModuleId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "TokenId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "Subject": {
+                  "type": "string"
+                },
+                "EmailBody": {
+                  "type": "string"
+                },
+                "To": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "Cc": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "Bcc": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "BccEmail": {
+                  "type": "string"
+                },
+                "IsActive": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "UserId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/EmailTemplate/getById/{EmailTemplateId}": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get EmailTemplate by EmailTemplateId",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "EmailTemplateId",
+            "in": "path",
+            "description": "EmailTemplateId of EmailTemplate that needs to be get data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/EmailTemplate/getAll/{IsActive}": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get all EmailTemplates",
+        "description": "if you want only active data then pass IsActive as 1 otherwise pass 2",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "IsActive",
+            "in": "path",
+            "description": "IsActive of EmailTemplate that needs to be get active/all data",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    },
+    "/Common/EmailTemplate/getAllDefault": {
+      "get": {
+        "tags": [
+          "Common"
+        ],
+        "summary": "Get All default data for add or update email template",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Something is wrong!"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "token",
+      "in": "header"
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
