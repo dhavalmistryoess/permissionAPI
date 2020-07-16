@@ -122,18 +122,22 @@ class SyncDetails_model extends CI_Model {
             
            
             $this->mylibrary->deleteCache(PERMISSION_ALL."_".implode(",", $roleID));
+            $this->mylibrary->deleteCache(ROLE_PERMISSION."_".implode(",", $roleID));
             // insert into permission Table
             $this->db->insert_batch('tblpermission', $assignArr);
             
             //get Permission By UserName
-            $this->db->select(['tblpermission.RoleId', 'tblpermission.HasAccess', 'tblmodules.ClassName', 'tblmodules.FunctionName']);
-            $this->db->from('tblpermission');
-            $this->db->join('tblmodules', 'tblpermission.ModuleID = tblmodules.ModuleID');
-            $this->db->where(['tblpermission.RoleId' => implode(",", $roleID)]);
-            $query = $this->db->get();
-            $result = $query->result_array();
-           
-            $this->cache->save(PERMISSION_ALL."_".implode(",", $roleID), json_encode($result), CACHE_EXPIRE_TIME);
+//            $result = $this->getPermissionByRole(implode(",", $roleID));
+//            $result = $this->getPermission(implode(",", $roleID));
+////            $this->db->select(['tblpermission.RoleId', 'tblpermission.HasAccess', 'tblmodules.ClassName', 'tblmodules.FunctionName']);
+////            $this->db->from('tblpermission');
+////            $this->db->join('tblmodules', 'tblpermission.ModuleID = tblmodules.ModuleID');
+////            $this->db->where(['tblpermission.RoleId' => implode(",", $roleID)]);
+////            $query = $this->db->get();
+////            $result = $query->result_array();
+//           
+//            $this->cache->save(PERMISSION_ALL."_".implode(",", $roleID), json_encode($result['data']), CACHE_EXPIRE_TIME);
+//            $this->cache->save(ROLE_PERMISSION."_".implode(",", $roleID), json_encode($result['data']), CACHE_EXPIRE_TIME);
             
             $this->responseArr['status'] = 'success';
             $this->responseArr['data'] = true;
