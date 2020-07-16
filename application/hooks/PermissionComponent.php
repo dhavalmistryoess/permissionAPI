@@ -11,13 +11,13 @@ class PermissionComponent extends MX_Controller {
     
     protected $allowedWithOutLogin = [
         'Auth' => [
-            'login'
+            'login', 'logout'
         ],
         'Password' => [
             'forgot'
         ],
         'SyncDetails' => [
-            'getClassName', 'getRolePermission'
+            'getClassName', 'getRolePermission', 'getRolePermissionDetails'
         ]
       
     ];
@@ -51,7 +51,8 @@ class PermissionComponent extends MX_Controller {
                 if (!$this->session->userdata('userDetails')) {
                      $this->session->set_userdata('userDetails', (array)$decoded);
                 } 
-                
+              
+               
                 //get Data from the permission table
                 if($val->RoleId != 1) {
                     $this->checkPermission($val->RoleId); 
@@ -79,7 +80,7 @@ class PermissionComponent extends MX_Controller {
     function checkPermission($roleID) {
         $className = $this->uri->segment(2);
         $functionName = $this->uri->segment(3);
-        if (!$this->cache->get(PERMISSION_ALL)) {
+        if (!$this->cache->get(PERMISSION_ALL."_".$roleID)) {
             $this->db->select(['tblpermission.RoleId', 'tblpermission.HasAccess', 'tblmodules.ClassName', 'tblmodules.FunctionName']);
             $this->db->from('tblpermission');
             $this->db->join('tblmodules', 'tblpermission.ModuleID = tblmodules.ModuleID');
@@ -89,7 +90,7 @@ class PermissionComponent extends MX_Controller {
             $query = $this->db->get();
             $result = $query->row();
         } else {
-            $getCachePermission = (json_decode($this->cache->get(PERMISSION_ALL), true));
+            $getCachePermission = (json_decode($this->cache->get(PERMISSION_ALL."_".$roleID), true));
             $result = array_keys(array_map('nestedLowercase', $getCachePermission), ['RoleId' => $roleID, 'FunctionName' => strtolower($functionName), 'ClassName' => strtolower($className), 'HasAccess' => 1]);
         }
        if (empty($result)) {

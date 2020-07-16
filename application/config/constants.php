@@ -96,6 +96,7 @@ define('DISCOUNT_ALL', 'discount_all');
 define('DOCUMENT_ALL', 'document_all');
 define('CERTIFICATE_ALL', 'certificate_all');
 define('PERMISSION_ALL', 'permission_all');
+define('ROLE_PERMISSION', 'role_permission');
 define('EMAILTEMPLATE_ALL', 'email_template_all');
 define('SOMETHING_WENT_WRONG', 'Something went wrong');
 define('ADMIN_EMAIL_ERROR', 'dhaval.mistry@theopeneyes.in');
