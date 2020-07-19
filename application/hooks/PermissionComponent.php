@@ -18,10 +18,16 @@ class PermissionComponent extends MX_Controller {
         ],
         'SyncDetails' => [
             'getClassName', 'getRolePermission', 'getRolePermissionDetails'
+        ],
+        'AuditLog' => [
+            'getRecentAuditLogs', 'getErrorLogs', 'getEmailLogs', 'getActivityLogs'
         ]
       
     ];
+    
    
+
+
     public function __construct() {
         parent::__construct();
         $this->load->library('session');

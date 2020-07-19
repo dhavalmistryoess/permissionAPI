@@ -104,7 +104,7 @@ class SyncDetails_model extends CI_Model {
         try {
             $getSessionData = $this->session->userdata('userDetails');
             $i = 0;
-            foreach ($permissionArr['Permission'] as $permission) {
+            foreach ($permissionArr as $permission) {
                 $moduleKey = explode(",", $permission['ModuleIDs']);
                 foreach ($moduleKey as $moduleID) {
                     $assignArr[$i]['ModuleID'] = $moduleID;
@@ -115,8 +115,9 @@ class SyncDetails_model extends CI_Model {
                     $i++;
                 }
             }
+           
             // delete into permission Table
-            $roleID = array_unique(array_column($permissionArr['Permission'], 'RoleId'));
+            $roleID = array_unique(array_column($permissionArr, 'RoleId'));
             $this->db->where_in('RoleId', $roleID);
             $this->db->delete('tblpermission');
             

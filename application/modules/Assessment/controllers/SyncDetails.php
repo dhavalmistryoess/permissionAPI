@@ -97,17 +97,18 @@ class SyncDetails extends MY_Controller {
     public function insertPermissionByRole_post() {
         try {
             $_POST = $postPermission = json_decode(trim(file_get_contents('php://input')), true);
-            if (!empty($_POST['Permission'])) {
-                foreach ($_POST['Permission'] as $key => $itemOptions) {
+            
+            if (!empty($postPermission)) {
+                foreach ($postPermission as $key => $itemOptions) {
                     $parameters[] = array(
-                        'field' => 'Permission[' . $key . '][RoleId]',
+                        'field' => '[' . $key . '][RoleId]',
                         'label' => 'RoleId',
                         'rules' => 'trim|required',
                         'errors' =>
                         array('required' => sprintf(IS_REQUIRED, "role id"))
                     );
                     $parameters[] = array(
-                        'field' => 'Permission[' . $key . '][ModuleIDs]',
+                        'field' => '[' . $key . '][ModuleIDs]',
                         'label' => 'RoleId',
                         'rules' => 'trim|required',
                         'errors' =>
