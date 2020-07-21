@@ -57,8 +57,6 @@ class PermissionComponent extends MX_Controller {
                 if (!$this->session->userdata('userDetails')) {
                      $this->session->set_userdata('userDetails', (array)$decoded);
                 } 
-              
-               
                 //get Data from the permission table
                 if($val->RoleId != 1) {
                     $this->checkPermission($val->RoleId); 
