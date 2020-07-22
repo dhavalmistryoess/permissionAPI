@@ -17,7 +17,7 @@ class PermissionComponent extends MX_Controller {
             'forgot'
         ],
         'SyncDetails' => [
-            'getClassName', 'getRolePermission', 'getRolePermissionDetails'
+            'getClassName', 'getRolePermission', 'getRolePermissionDetails', 'getAllPermission','getPermissionByKey', 'updatePermissionName'
         ],
         'AuditLog' => [
             'getRecentAuditLogs', 'getErrorLogs', 'getEmailLogs', 'getActivityLogs'

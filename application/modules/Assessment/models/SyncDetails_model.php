@@ -68,7 +68,7 @@ class SyncDetails_model extends CI_Model {
 
     public function getPermissionByRole($roleID) {
         try {
-            $this->db->select(['tblpermission.RoleId', 'tblmodules.DisplayName', 'GROUP_CONCAT(DISTINCT tblmodules.ModuleID) As ModuleIDs' ,'tblpermission.HasAccess', 'tblmodules.ClassName']);
+            $this->db->select(['tblpermission.RoleId', 'tblmodules.DisplayName', 'tblmodules.FrontDisplayName', 'GROUP_CONCAT(DISTINCT tblmodules.ModuleID) As ModuleIDs' ,'tblpermission.HasAccess', 'tblmodules.ClassName']);
             $this->db->from('tblpermission');
             $this->db->join('tblmodules', 'tblpermission.ModuleID = tblmodules.ModuleID');
             $this->db->group_by(['tblmodules.DisplayName', 'tblmodules.ClassName', 'tblpermission.RoleId']);
@@ -128,18 +128,6 @@ class SyncDetails_model extends CI_Model {
             $this->db->insert_batch('tblpermission', $assignArr);
             
             //get Permission By UserName
-//            $result = $this->getPermissionByRole(implode(",", $roleID));
-//            $result = $this->getPermission(implode(",", $roleID));
-////            $this->db->select(['tblpermission.RoleId', 'tblpermission.HasAccess', 'tblmodules.ClassName', 'tblmodules.FunctionName']);
-////            $this->db->from('tblpermission');
-////            $this->db->join('tblmodules', 'tblpermission.ModuleID = tblmodules.ModuleID');
-////            $this->db->where(['tblpermission.RoleId' => implode(",", $roleID)]);
-////            $query = $this->db->get();
-////            $result = $query->result_array();
-//           
-//            $this->cache->save(PERMISSION_ALL."_".implode(",", $roleID), json_encode($result['data']), CACHE_EXPIRE_TIME);
-//            $this->cache->save(ROLE_PERMISSION."_".implode(",", $roleID), json_encode($result['data']), CACHE_EXPIRE_TIME);
-            
             $this->responseArr['status'] = 'success';
             $this->responseArr['data'] = true;
             return $this->responseArr;
@@ -149,8 +137,7 @@ class SyncDetails_model extends CI_Model {
             return $this->responseArr;
         }
     }
-    
-      public function getPermission($roleID) {
+    public function getPermission($roleID) {
         try {
             $this->db->select(['tblmodules.DisplayName','tblpermission.HasAccess']);
             $this->db->from('tblpermission');
@@ -169,6 +156,63 @@ class SyncDetails_model extends CI_Model {
             return $this->responseArr;
         }
     }
+    public function getPermissionByKey($permissionKey = "") {
+        try {
+            $this->db->select(['tblpermission.RoleId','tblmodules.FrontDisplayName', 'tblmodules.DisplayName', 'GROUP_CONCAT(DISTINCT tblmodules.ModuleID) As ModuleIDs' ,'tblpermission.HasAccess', 'tblmodules.ClassName']);
+            $this->db->from('tblpermission');
+            $this->db->join('tblmodules', 'tblpermission.ModuleID = tblmodules.ModuleID');
+            $this->db->group_by(['tblmodules.DisplayName', 'tblmodules.ClassName']);
+            $this->db->order_by('tblmodules.DisplayName', 'ASC');
+            if($permissionKey != "") {
+                $this->db->where(['tblmodules.DisplayName' => $permissionKey]);
+            } else {
+                $this->db->where(['tblmodules.DisplayName !=' => null]);
+            }
+            $query = $this->db->get();
+            $result =($permissionKey != "")  ? $query->row() : $query->result_array();
+            $this->responseArr['status'] = 'success';
+            $this->responseArr['data'] = $result;
+            return $this->responseArr;
+        } catch (Exception $ex) {
+            $this->responseArr['status'] = 'exception';
+            $this->responseArr['message'] = $e->getMessage();
+            return $this->responseArr;
+        }
+    }
+    
+    public function updatePermission($permissionArr) {
+        try {
+             $this->db->where(['FrontDisplayName' => $permissionArr['FrontDisplayName'], 'DisplayName !=' => $permissionArr['DisplayName']]);
+            $query = $this->db->get('tblmodules');
+            if ($query->num_rows() > 0){
+                $status = false;
+            }
+            else{
+                $this->db->where('DisplayName', $permissionArr['DisplayName']);
+                $this->db->update('tblmodules', ['FrontDisplayName' => $permissionArr['FrontDisplayName']]);
+                $status = true;
+                $this->mylibrary->deleteCache(PERMISSION_ALL);
+                $getFileDetails = array_diff(scandir('application/cache'), array('.', '..'));
+                if(!empty($getFileDetails)) {
+                    $permissionArray =  preg_grep("/^permission.*/", $getFileDetails);
+                    foreach($permissionArray as $permission) {
+                        $this->mylibrary->deleteCache($permission);
+                    }
+                }
+              
+            }
+        
+            //get Permission By UserName
+            $this->responseArr['status'] = 'success';
+            $this->responseArr['data'] = $status;
+            return $this->responseArr;
+        } catch (Exception $ex) {
+            $this->responseArr['status'] = 'exception';
+            $this->responseArr['message'] = $e->getMessage();
+            return $this->responseArr;
+        }
+    }
+    
     
     
     
