@@ -209,7 +209,7 @@ class SyncDetails extends MY_Controller {
                 $myArray = (json_decode($this->cache->get(PERMISSION_ALL), true));
             }
             
-            $searchColumn = ['DisplayName', 'FrontDisplayName'];
+            $searchColumn = ['Slug', 'DisplayName'];
             $data = generatePagination($myArray, $limit, $offset, $searchData, $sortOrder, $searchColumn);
             $this->response($data, REST_Controller::HTTP_OK);
         } catch (Exception $ex) {
@@ -238,18 +238,18 @@ class SyncDetails extends MY_Controller {
             $_POST = $postPermission = json_decode(trim(file_get_contents('php://input')), true);
             $parameters = array(
                 array(
-                    'field' => 'FrontDisplayName',
-                    'label' => 'FrontDisplayName',
-                    'rules' => 'trim|required',
-                    'errors' =>
-                    array('required' => sprintf(IS_REQUIRED, "display name"))
-                ),
-                array(
                     'field' => 'DisplayName',
                     'label' => 'DisplayName',
                     'rules' => 'trim|required',
                     'errors' =>
                     array('required' => sprintf(IS_REQUIRED, "display name"))
+                ),
+                array(
+                    'field' => 'Slug',
+                    'label' => 'Slug',
+                    'rules' => 'trim|required',
+                    'errors' =>
+                    array('required' => sprintf(IS_REQUIRED, "slug"))
                 )
                
             );
